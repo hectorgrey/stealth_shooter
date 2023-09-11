@@ -5,6 +5,8 @@ use bevy_egui::{
     EguiPlugin,
 };
 
+mod characters;
+
 fn hello(mut contexts: EguiContexts) {
     egui::Window::new("Hello World").show(contexts.ctx_mut(), |ui| {
         ui.label("Hello World!");
