@@ -14,5 +14,5 @@ version = "0.22.0"
 features = ["enhanced-determinism"]
 
 
-[profiles.dev-deps] 
+[profile.dev] 
 opt-level = 3
