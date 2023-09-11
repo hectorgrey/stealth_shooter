@@ -1,0 +1,18 @@
+[package]
+name = "stealth_shooter"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = "0.11.2"
+bevy_egui = "0.21.0"
+
+[dependencies.bevy_rapier3d]
+version = "0.22.0"
+features = ["enhanced-determinism"]
+
+
+[profiles.dev-deps] 
+opt-level = 3
