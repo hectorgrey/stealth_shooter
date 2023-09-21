@@ -2,8 +2,8 @@ use bevy::prelude::*;
 use bevy_egui::{egui, EguiContexts, EguiPlugin};
 use blank_map::{create_camera, create_ground, create_light};
 
-mod characters;
 mod blank_map;
+mod characters;
 
 #[derive(States, Default, Clone, Copy, Debug, Hash, PartialEq, Eq)]
 enum GameState {
@@ -25,6 +25,7 @@ fn main() {
         .add_plugins(EguiPlugin)
         .add_state::<GameState>()
         .add_systems(Startup, (create_camera, create_light, create_ground))
+        .add_systems(Update, blank_map::texture_skybox)
         .add_systems(Update, hello.run_if(in_state(GameState::MainMenu)))
         .run();
 }
