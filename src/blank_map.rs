@@ -1,5 +1,4 @@
 use bevy::{
-    core_pipeline::Skybox,
     prelude::*,
     render::render_resource::{TextureViewDescriptor, TextureViewDimension},
 };
@@ -7,8 +6,8 @@ use bevy_rapier3d::prelude::*;
 
 #[derive(Resource)]
 pub struct SkyboxTexture {
-    texture_handle: Handle<Image>,
-    is_loaded: bool,
+    pub texture_handle: Handle<Image>,
+    pub is_loaded: bool,
 }
 
 pub fn create_ground(
@@ -33,26 +32,13 @@ pub fn create_ground(
     ));
 }
 
-pub fn create_camera(mut commands: Commands, asset_server: Res<AssetServer>) {
-    let skybox = asset_server.load("blank_map_skybox.png");
-    commands.spawn((
-        Camera3dBundle {
-            transform: Transform::from_xyz(0., 1.75, 0.),
-            ..Default::default()
-        },
-        Skybox(skybox.clone()),
-    ));
-    commands.insert_resource(SkyboxTexture {
-        texture_handle: skybox,
-        is_loaded: false,
-    });
-}
-
 pub fn texture_skybox(mut images: ResMut<Assets<Image>>, mut texture: ResMut<SkyboxTexture>) {
     let image = images.get_mut(&texture.texture_handle);
     if let Some(image) = image {
         if !texture.is_loaded {
-            image.reinterpret_stacked_2d_as_array(image.texture_descriptor.size.height / image.texture_descriptor.size.width);
+            image.reinterpret_stacked_2d_as_array(
+                image.texture_descriptor.size.height / image.texture_descriptor.size.width,
+            );
             image.texture_view_descriptor = Some(TextureViewDescriptor {
                 dimension: Some(TextureViewDimension::Cube),
                 ..Default::default()

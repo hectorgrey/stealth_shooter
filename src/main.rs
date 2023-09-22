@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use bevy_egui::{egui, EguiContexts, EguiPlugin};
-use blank_map::{create_camera, create_ground, create_light};
+use blank_map::{create_ground, create_light, texture_skybox};
+use characters::setup_player;
 
 mod blank_map;
 mod characters;
@@ -24,8 +25,9 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_plugins(EguiPlugin)
         .add_state::<GameState>()
-        .add_systems(Startup, (create_camera, create_light, create_ground))
-        .add_systems(Update, blank_map::texture_skybox)
+        .add_systems(Startup, (create_light, create_ground))
+        .add_systems(Startup, setup_player)
+        .add_systems(Update, texture_skybox)
         .add_systems(Update, hello.run_if(in_state(GameState::MainMenu)))
         .run();
 }
