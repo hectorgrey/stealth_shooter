@@ -52,6 +52,7 @@ pub fn texture_skybox(mut images: ResMut<Assets<Image>>, mut texture: ResMut<Sky
     let image = images.get_mut(&texture.texture_handle);
     if let Some(image) = image {
         if !texture.is_loaded {
+            image.reinterpret_stacked_2d_as_array(image.texture_descriptor.size.height / image.texture_descriptor.size.width);
             image.texture_view_descriptor = Some(TextureViewDescriptor {
                 dimension: Some(TextureViewDimension::Cube),
                 ..Default::default()
