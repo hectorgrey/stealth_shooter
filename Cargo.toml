@@ -9,7 +9,7 @@ edition = "2021"
 bevy_egui = "0.21.0"
 
 [dependencies.bevy]
-version = "0.11.2"
+version = "0.11.3"
 features = ["dynamic_linking"] # Remove this for release
 
 [dependencies.bevy_rapier3d]
