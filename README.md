@@ -1,5 +1,5 @@
 # stealth_shooter
-An FPS with a focus on stealth, created in the Bevy engine
+An FPS with a focus on stealth, created in the Bevy engine.  Title TBD
 
 ## Asset Credits
 
