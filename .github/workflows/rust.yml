@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - name: Install dependences
-      run: apt install alsa
+      run: sudo apt install alsa
     - uses: actions/checkout@v3
     - name: Build
       run: cargo build --verbose
